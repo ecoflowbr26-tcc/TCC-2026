@@ -1,0 +1,403 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Lora", "Playfair Display", Georgia, serif;
+  --font-serif: "Lora", "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Sleek Interface Design Theme Colors */
+  --color-eco-forest: #4F6F52;
+  --color-eco-leaf: #3A4F3F;
+  --color-eco-sage: #809D84;
+  --color-eco-moss: #C2D9C5;
+  --color-eco-cream: #FAF9F6;
+  --color-eco-sand: #F5F5F0;
+  --color-eco-bark: #8C6239;
+  --color-eco-wood: #A98467;
+  --color-eco-amber: #E8E2D2;
+}
+
+:root {
+  --site-font-family: "Inter", sans-serif;
+  --site-font-family-headings: "Lora", serif;
+  --site-font-size: 16px;
+}
+
+html {
+  font-size: var(--site-font-size, 16px) !important;
+}
+
+/* Escaped selectors for arbitrary Tailwind font-size utilities to enable proportional scaling */
+.text-\[6px\] { font-size: 0.375rem !important; }
+.text-\[7px\] { font-size: 0.4375rem !important; }
+.text-\[7\.5px\] { font-size: 0.46875rem !important; }
+.text-\[8px\] { font-size: 0.5rem !important; }
+.text-\[8\.5px\] { font-size: 0.53125rem !important; }
+.text-\[9px\] { font-size: 0.5625rem !important; }
+.text-\[9\.5px\] { font-size: 0.59375rem !important; }
+.text-\[10px\] { font-size: 0.625rem !important; }
+.text-\[10\.5px\] { font-size: 0.65625rem !important; }
+.text-\[11px\] { font-size: 0.6875rem !important; }
+.text-\[12\.5px\] { font-size: 0.78125rem !important; }
+.text-\[13px\] { font-size: 0.8125rem !important; }
+.text-\[13\.5px\] { font-size: 0.84375rem !important; }
+
+/* Elegant, Forest Slate Dark Mode (Organica Dark) definition */
+html.dark {
+  color-scheme: dark;
+
+  /* Structural backgrounds & surfaces */
+  --color-eco-cream: #0e1111;
+  --color-eco-sand: #141818;
+  --color-eco-amber: #1f2421;
+  --color-white: #161b1b;
+  
+  /* System-wide card / divider overrides */
+  --color-stone-50: #1c2222;
+  --color-stone-100: #242c2c;
+  --color-stone-150: #283131;
+  --color-stone-200: #303b3b;
+  --color-stone-250: #384545;
+  --color-stone-300: #414f4f;
+  --color-stone-400: #546666;
+  --color-stone-500: #7b9191;
+  --color-stone-550: #8ba2a2;
+  --color-stone-600: #9cb1b1;
+  --color-stone-650: #acc0c0;
+  --color-stone-700: #c1d0d0;
+  --color-stone-800: #dde6e6;
+  --color-stone-850: #e8eeee;
+  --color-stone-900: #f4f8f8;
+
+  /* Bright active highlights for eco forest elements */
+  --color-eco-forest: #6baa75;
+  --color-eco-leaf: #9fd1a7;
+  --color-eco-sage: #81a487;
+  --color-eco-moss: #1e3322; /* darker forest base for pills */
+
+  --color-eco-wood: #bfa18a;
+  --color-eco-bark: #cca88d;
+}
+
+html.dark body {
+  background-color: var(--color-eco-cream) !important;
+  color: var(--color-stone-700) !important;
+}
+
+html.dark ::placeholder {
+  color: var(--color-stone-500) !important;
+}
+
+/* Specific button, card and text visual overrides on dark mode */
+html.dark select, 
+html.dark input, 
+html.dark textarea {
+  background-color: var(--color-stone-50) !important;
+  color: var(--color-stone-900) !important;
+  border-color: var(--color-stone-200) !important;
+}
+
+html.dark select option {
+  background-color: var(--color-stone-50) !important;
+  color: var(--color-stone-900) !important;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-eco-cream);
+    color: #2C3333;
+    font-family: var(--site-font-family, "Inter", sans-serif) !important;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--site-font-family-headings, "Lora", serif) !important;
+    letter-spacing: -0.01em;
+  }
+
+  .font-sans {
+    font-family: var(--site-font-family, "Inter", sans-serif) !important;
+  }
+
+  .font-display {
+    font-family: var(--site-font-family-headings, "Lora", serif) !important;
+  }
+
+  .font-mono, code, pre {
+    font-family: "JetBrains Mono", monospace !important;
+  }
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-eco-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-eco-moss);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-eco-sage);
+}
+
+/* Animated backgrounds */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.eco-glow {
+  background: radial-gradient(circle, rgba(79, 111, 82, 0.2) 0%, rgba(250, 249, 246, 0.05) 75%);
+  animation: pulseGlow 8s ease-in-out infinite;
+}
+
+/* Skeleton animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  150% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #F5F5F0 25%, #E8E2D2 50%, #F5F5F0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Custom scale rules for arbitrary pixel classes to support proportional scaling */
+@layer utilities {
+  .text-\[6px\] { font-size: calc(6px * var(--font-scale, 1)) !important; }
+  .text-\[7px\] { font-size: calc(7px * var(--font-scale, 1)) !important; }
+  .text-\[7\.5px\] { font-size: calc(7.5px * var(--font-scale, 1)) !important; }
+  .text-\[8px\] { font-size: calc(8px * var(--font-scale, 1)) !important; }
+  .text-\[8\.5px\] { font-size: calc(8.5px * var(--font-scale, 1)) !important; }
+  .text-\[9px\] { font-size: calc(9px * var(--font-scale, 1)) !important; }
+  .text-\[9\.5px\] { font-size: calc(9.5px * var(--font-scale, 1)) !important; }
+  .text-\[10px\] { font-size: calc(10px * var(--font-scale, 1)) !important; }
+  .text-\[10\.5px\] { font-size: calc(10.5px * var(--font-scale, 1)) !important; }
+  .text-\[11px\] { font-size: calc(11px * var(--font-scale, 1)) !important; }
+  .text-\[11\.5px\] { font-size: calc(11.5px * var(--font-scale, 1)) !important; }
+  .text-\[12px\] { font-size: calc(12px * var(--font-scale, 1)) !important; }
+  .text-\[12\.5px\] { font-size: calc(12.5px * var(--font-scale, 1)) !important; }
+  .text-\[13px\] { font-size: calc(13px * var(--font-scale, 1)) !important; }
+  .text-\[13\.5px\] { font-size: calc(13.5px * var(--font-scale, 1)) !important; }
+  .text-\[14px\] { font-size: calc(14px * var(--font-scale, 1)) !important; }
+}
+
+/* Custom premium Dark Mode override system */
+html.dark, .dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #171614 !important;
+  color: #E6E4DF !important;
+}
+
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: #FAF9F6 !important;
+}
+
+/* Card overrides */
+html.dark .bg-white {
+  background-color: #23221F !important;
+}
+
+html.dark .bg-stone-100,
+html.dark .bg-stone-50 {
+  background-color: #1E1D1A !important;
+}
+
+html.dark .bg-stone-150 {
+  background-color: #2A2925 !important;
+}
+
+html.dark .bg-stone-200 {
+  background-color: #33322E !important;
+}
+
+html.dark .bg-stone-50\/50,
+html.dark .bg-stone-50\/55,
+html.dark .bg-stone-50\/60,
+html.dark .bg-stone-50\/70,
+html.dark .bg-stone-50\/80 {
+  background-color: rgba(30, 29, 26, 0.8) !important;
+}
+
+html.dark .bg-stone-100\/50 {
+  background-color: rgba(30, 29, 26, 0.5) !important;
+}
+
+html.dark .border,
+html.dark .border-stone-100,
+html.dark .border-stone-150,
+html.dark .border-stone-200,
+html.dark .border-stone-250,
+html.dark .border-stone-300,
+html.dark .border-stone-200\/60,
+html.dark .border-stone-200\/80,
+html.dark .border-stone-150\/60 {
+  border-color: #33322D !important;
+}
+
+html.dark .text-stone-900,
+html.dark .text-stone-950,
+html.dark .text-stone-850,
+html.dark .text-stone-800,
+html.dark .text-stone-750,
+html.dark .text-stone-705 {
+  color: #86EFAC !important; /* Beautiful light green (emerald-300) for contrast */
+}
+
+/* Restore white colors instead of light green in specific pages/menus in dark mode */
+html.dark #admin-panel .text-stone-900,
+html.dark #admin-panel .text-stone-950,
+html.dark #admin-panel .text-stone-850,
+html.dark #admin-panel .text-stone-800,
+html.dark #admin-panel .text-stone-750,
+html.dark #admin-panel .text-stone-705,
+html.dark #login-page .text-stone-900,
+html.dark #login-page .text-stone-950,
+html.dark #login-page .text-stone-850,
+html.dark #login-page .text-stone-800,
+html.dark #login-page .text-stone-750,
+html.dark #login-page .text-stone-705,
+html.dark #cadastro-page .text-stone-900,
+html.dark #cadastro-page .text-stone-950,
+html.dark #cadastro-page .text-stone-850,
+html.dark #cadastro-page .text-stone-800,
+html.dark #cadastro-page .text-stone-750,
+html.dark #cadastro-page .text-stone-705,
+html.dark #user-profile-page .text-stone-900,
+html.dark #user-profile-page .text-stone-950,
+html.dark #user-profile-page .text-stone-850,
+html.dark #user-profile-page .text-stone-800,
+html.dark #user-profile-page .text-stone-750,
+html.dark #user-profile-page .text-stone-705,
+html.dark #require-auth-profile .text-stone-900,
+html.dark #require-auth-profile .text-stone-950,
+html.dark #require-auth-profile .text-stone-850,
+html.dark #require-auth-profile .text-stone-800,
+html.dark #require-auth-profile .text-stone-750,
+html.dark #require-auth-profile .text-stone-705,
+html.dark #profile-dropdown-menu .text-stone-900,
+html.dark #profile-dropdown-menu .text-stone-950,
+html.dark #profile-dropdown-menu .text-stone-850,
+html.dark #profile-dropdown-menu .text-stone-800,
+html.dark #profile-dropdown-menu .text-stone-750,
+html.dark #profile-dropdown-menu .text-stone-705,
+html.dark #navbar-mobile-menu .text-stone-900,
+html.dark #navbar-mobile-menu .text-stone-950,
+html.dark #navbar-mobile-menu .text-stone-850,
+html.dark #navbar-mobile-menu .text-stone-800,
+html.dark #navbar-mobile-menu .text-stone-750,
+html.dark #navbar-mobile-menu .text-stone-705 {
+  color: #FAF9F6 !important;
+}
+
+html.dark .text-stone-700,
+html.dark .text-stone-605,
+html.dark .text-stone-600 {
+  color: #ECEBE9 !important; /* Lighter off-white/gray */
+}
+
+html.dark .text-stone-555,
+html.dark .text-stone-550,
+html.dark .text-stone-500,
+html.dark .text-stone-450,
+html.dark .text-stone-400,
+html.dark .text-stone-350,
+html.dark .text-stone-300 {
+  color: #C8C6C1 !important; /* Lighter warm gray */
+}
+
+html.dark input, 
+html.dark textarea, 
+html.dark select {
+  background-color: #1C1B18 !important;
+  color: #FAF9F6 !important;
+  border-color: #33322D !important;
+}
+
+html.dark input::placeholder, 
+html.dark textarea::placeholder {
+  color: #6E6C68 !important;
+}
+
+/* Specific buttons and elements */
+html.dark .hover\:bg-stone-50:hover,
+html.dark .hover\:bg-stone-100:hover,
+html.dark .hover\:bg-stone-50\/60:hover {
+  background-color: #2D2C28 !important;
+}
+
+html.dark .bg-emerald-50,
+html.dark .bg-eco-forest\/10,
+html.dark .bg-emerald-50\/40,
+html.dark .bg-emerald-50\/80 {
+  background-color: rgba(79, 111, 82, 0.18) !important;
+}
+
+html.dark .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+}
+
+html.dark .text-red-650 {
+  color: #F87171 !important;
+}
+
+html.dark .border-red-200 {
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+html.dark .hover\:bg-red-100:hover {
+  background-color: rgba(239, 68, 68, 0.22) !important;
+}
+
+html.dark .text-emerald-950,
+html.dark .text-emerald-900,
+html.dark .text-emerald-800,
+html.dark .text-\[\#336141\] {
+  color: #C2D9C5 !important;
+}
+
+html.dark .text-eco-forest {
+  color: #7AA67C !important;
+}
+
+html.dark .bg-eco-forest {
+  background-color: #4F6F52 !important;
+  color: #FAF9F6 !important;
+}
+
+html.dark .shadow-sm,
+html.dark .shadow-xs,
+html.dark .shadow-2xl,
+html.dark .shadow-2xs {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55) !important;
+}
+
+html.dark .text-white,
+html.dark .text-\[\#FFFFFF\] {
+  color: #FFFFFF !important;
+}
+
+

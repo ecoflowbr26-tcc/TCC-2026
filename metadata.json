@@ -1,0 +1,6 @@
+{
+  "name": "EcoFlow",
+  "description": "EcoFlow é uma rede social inspirada no Instagram dedicada a mostrar como resíduos podem ganhar uma nova utilidade útil e criativa (como garrafas PET, vidro, latas, tecidos e pneus), conectando criadores e interessados diretamente de forma orgânica.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
