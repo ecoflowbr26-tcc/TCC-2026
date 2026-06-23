@@ -286,74 +286,27 @@ export const EcoProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // Auth Operations
-  const login = (email: string, pass: string): boolean => {
-    const sanitizedEmail = email.trim().toLowerCase();
-    
-    // Check exclusive Admin credentials first
-    if (sanitizedEmail === 'ecoflowbr26@gmail.com' && pass === 'brecoflow26') {
-      const adminUser: User = {
-        id: 'admin_eco',
-        name: 'Administrador EcoFlow',
-        email: 'ecoflowbr26@gmail.com',
-        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80',
-        followersCount: 0,
-        followingCount: 0,
-        postsCount: products.filter(p => p.creatorId === 'admin_eco').length,
-        isCreator: true,
-        isAdmin: true,
-        city: 'Curitiba',
-        state: 'PR',
-        bio: 'Painel Central de Moderação e Administração do Portal EcoFlow.',
-        banner: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
-        contactWhatsapp: '',
-        contactInstagram: '',
-        contactFacebook: ''
-      };
-      
-      // Make sure admin exists in users list if not present
-      if (!users.some(u => u.email.toLowerCase() === 'ecoflowbr26@gmail.com')) {
-        setUsers(prev => [adminUser, ...prev]);
-      }
-      
-      setCurrentUser(adminUser);
-      addToast('Acesso de administrador central concedido!', 'success');
-      return true;
-    }
+const login = async (
+  email: string,
+  pass: string
+): Promise<boolean> => {
+  try {
+    const user = await EcoApi.login(email, pass);
 
-    // Basic password safety constraint
-    if (pass.length < 6) {
-      addToast('A senha deve conter no mínimo 6 caracteres.', 'error');
-      return false;
-    }
+    setCurrentUser(user);
 
-    // Check custom registration first
-    const foundUser = users.find((u) => u.email.toLowerCase() === sanitizedEmail);
-    if (foundUser) {
-      if (foundUser.isInactive) {
-        addToast('Sua conta foi temporariamente inativada pelo Administrador.', 'error');
-        return false;
-      }
-      setCurrentUser(foundUser);
-      addToast(`Bem-vindo de volta, ${foundUser.name}!`, 'success');
+    addToast('Login realizado com sucesso!', 'success');
 
-      // Async write-through to login endpoint to verify token/session
-      if (isBackendConfigured()) {
-        EcoApi.login(sanitizedEmail, pass).catch(err => {
-          console.warn('Backend login handshake sync status:', err.message);
-        });
-      }
-      return true;
-    }
+    return true;
+  } catch (error: any) {
+    addToast(
+      error.message || 'Usuário ou senha inválidos',
+      'error'
+    );
 
-    // Fallback: If they try to log into ecoflowbr26@gmail.com with WRONG password
-    if (sanitizedEmail === 'ecoflowbr26@gmail.com') {
-      addToast('Senha incorreta para a conta administradora EcoFlow.', 'error');
-      return false;
-    }
-
-    addToast('E-mail não cadastrado ou credenciais incorretas. Use a aba "Cadastre-se" caso queira criar sua conta.', 'error');
     return false;
-  };
+  }
+};
 
   const register = (
     name: string,

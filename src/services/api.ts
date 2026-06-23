@@ -6,7 +6,7 @@
 import { User, Product, Report, Comment } from '../types';
 
 // Read backend URL from Vite environment variables (fallback to empty string)
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE_URL = 'http://localhost:8080';
 
 /**
  * Checks if the external Node.js backend configuration is provided and looks accessible.
@@ -53,10 +53,13 @@ export const EcoApi = {
   },
 
   // 2. Auth Endpoints
-  async login(email: string, pass: string): Promise<{ token?: string; user: User }> {
-    return request<{ token?: string; user: User }>('/api/auth/login', {
+  async login(email: string, pass: string) {
+    return request('/api/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email, pass }),
+      body: JSON.stringify({
+        username: email,
+        password: pass
+      }),
     });
   },
 

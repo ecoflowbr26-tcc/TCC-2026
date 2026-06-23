@@ -21,7 +21,9 @@ export const Login: React.FC = () => {
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [recoveryEmail, setRecoveryEmail] = useState('');
 
-  const handleLoginSubmit = (e: React.FormEvent) => {
+  const handleLoginSubmit = async (
+  e: React.FormEvent
+) => {
     e.preventDefault();
 
     if (!email.trim() || !password) {
@@ -29,7 +31,7 @@ export const Login: React.FC = () => {
       return;
     }
 
-    const success = login(email.trim(), password);
+    const success = await login(email, password);
     if (success) {
       const lower = email.trim().toLowerCase();
       if (lower === 'ecoflowadmin@eco.com' || lower === 'ecoflowadimin@eco.com') {
